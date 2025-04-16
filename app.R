@@ -1,3 +1,4 @@
+library(rsconnect)
 library(shiny)
 library(readxl)
 library(nortest)
@@ -25,7 +26,9 @@ options(shiny.maxRequestSize = 200*1024^2)
 ui <- fluidPage(
   titlePanel(
     windowTitle = "QualyTools",
-    title = div(img(src = "logo.png", height = "70px"), "Quality Control Tools")
+    title = div(
+      tags$img(src = "logo.PNG", height = "70px", style = "margin-right:10px;"), 
+      "Quality Control Tools")
     ),
   
   # Layout principal
@@ -89,8 +92,14 @@ ui <- fluidPage(
                            verbatimTextOutput("capability_summary")  
                   ),
                   
-                  tabPanel("License",
-                           h3("Creative Commons Attribution-NonCommercial 4.0 International License"),
+                  tabPanel("About",
+                           h3("About QualyTools"),
+                           
+                           p("QualyTools is an open-source application designed to support quality management through accessible and practical statistical tools."),
+                           
+                           p(HTML("It is available online, and its source code is openly available for contributions and improvements at the 
+                <a href='https://github.com/Paulin7777/Qualytools' target='_blank'>QualyTools GitHub repository</a>.")),
+                           
                            p("This app is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License."),
                            
                            tags$ul(
@@ -104,21 +113,11 @@ ui <- fluidPage(
                                   target = "_blank"),
                            
                            tags$code("https://creativecommons.org/licenses/by-nc/4.0/legalcode")
-                  ),
+                  )
                   
-                  tabPanel("Contribution",
-                           h3("Support this project!"),
-                           p("If this project has been important to you, please consider making a donation."),
-                           p("Se este projeto foi importante para você, considere fazer uma doação."),
-                           
-                           h4("How to Donate:"),
-                           p("🇧🇷 Brazil - Pix: cpf - 11582297983"),
-                           p("🇵🇹 Portugal - BIC/SWIFT: CGDIPTPL - IBAN: PT50003507690068832093019"),
-                           p("🌍 Other countries - BIC/SWIFT: TRWIBEB1XXX - IBAN (Wise): BE57 9675 8965 0535"),
-                           
-                           p("Thank you for your support! / Obrigado pelo seu apoio!")
-                           
-                           )
+                  
+                  
+                   
       )
     )
   )
